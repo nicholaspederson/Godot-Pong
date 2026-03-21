@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://qcitkqxhjdfg"]
+
+[ext_resource type="Texture2D" uid="uid://f0utvxt0fri5" path="res://icon.svg" id="1_2rpvn"]
+[ext_resource type="Script" uid="uid://bbjlqoln14037" path="res://player_character_body_2d.gd" id="1_i0e3t"]
+[ext_resource type="Script" uid="uid://cvde7kbtmwpnv" path="res://player_2_char_bdy_2d.gd" id="3_6wnd2"]
+[ext_resource type="Script" uid="uid://c5ktme8hejuti" path="res://ball.gd" id="4_lqgkb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqgkb"]
+size = Vector2(5099987, 23000000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0e3t"]
+size = Vector2(2599987, 21500012)
+
+[sub_resource type="QuadMesh" id="QuadMesh_6wnd2"]
+lightmap_size_hint = Vector2i(7, 7)
+
+[sub_resource type="MeshTexture" id="MeshTexture_6wnd2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6wnd2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_lqgkb"]
+
+[sub_resource type="MeshTexture" id="MeshTexture_or2tv"]
+
+[node name="Root Node2D" type="Node2D" unique_id=1624012741]
+scale = Vector2(1e-05, 1e-05)
+
+[node name="PlayerCharacterBody2D" type="CharacterBody2D" parent="." unique_id=96947671 groups=["player"]]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(101200000, 46900000)
+script = ExtResource("1_i0e3t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacterBody2D" unique_id=1354482616 groups=["player"]]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-1.75, -0.875)
+shape = SubResource("RectangleShape2D_lqgkb")
+debug_color = Color(0.045958795, 0.5970412, 0.7116648, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerCharacterBody2D" unique_id=1997576304 groups=["player"]]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(0, -1)
+scale = Vector2(46875.004, 182812.52)
+texture = ExtResource("1_2rpvn")
+
+[node name="Player2 CharBdy2D" type="CharacterBody2D" parent="." unique_id=1634309576]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(8299992, 44900000)
+script = ExtResource("3_6wnd2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2 CharBdy2D" unique_id=1952216326]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(0.25, -1)
+shape = SubResource("RectangleShape2D_i0e3t")
+debug_color = Color(0.0681959, 0.59249365, 0.73232013, 0.41960785)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Player2 CharBdy2D" unique_id=581061097]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(-50000.875, -50000)
+scale = Vector2(2699998.2, 21500000)
+mesh = SubResource("QuadMesh_6wnd2")
+texture = SubResource("MeshTexture_6wnd2")
+
+[node name="pongBall" type="CharacterBody2D" parent="." unique_id=2064249312]
+position = Vector2(60200008, 44900004)
+script = ExtResource("4_lqgkb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pongBall" unique_id=2084554889]
+shape = SubResource("CircleShape2D_6wnd2")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="pongBall" unique_id=600219525]
+position = Vector2(-7, -3.5234375)
+scale = Vector2(3904424, 3899999.3)
+mesh = SubResource("SphereMesh_lqgkb")
+texture = SubResource("MeshTexture_or2tv")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=574601026]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=420208834]
+polygon = PackedVector2Array(36200004, -300000.03, 114700010, -100000.01, 114900010, -13700001, -20700002, -13100001, -19400002, 77100010, 115500010, 77500010, 115100010, 64300004, 0, 64800004, -11700001, 64500004, -12500001, -8700001, -13000001, -8900001, -10900001, -300000.03)
+
+[node name="Label" type="Label" parent="." unique_id=185346736]
+offset_left = -3500000.2
+offset_top = -2200000.2
+offset_right = 4600001.0
+offset_bottom = 3600000.2
+theme_override_font_sizes/font_size = 1000
+text = "Score 0 : 0"
