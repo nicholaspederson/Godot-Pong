@@ -22,6 +22,9 @@ lightmap_size_hint = Vector2i(7, 7)
 
 [sub_resource type="MeshTexture" id="MeshTexture_or2tv"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_or2tv"]
+size = Vector2(6699990.5, 68600016)
+
 [node name="Root Node2D" type="Node2D" unique_id=1624012741]
 scale = Vector2(1e-05, 1e-05)
 
@@ -29,6 +32,8 @@ scale = Vector2(1e-05, 1e-05)
 light_mask = 2
 visibility_layer = 2
 position = Vector2(101200000, 46900000)
+collision_layer = 2
+collision_mask = 9
 script = ExtResource("1_i0e3t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacterBody2D" unique_id=1354482616 groups=["player"]]
@@ -49,6 +54,8 @@ texture = ExtResource("1_2rpvn")
 light_mask = 4
 visibility_layer = 4
 position = Vector2(8299992, 44900000)
+collision_layer = 4
+collision_mask = 9
 script = ExtResource("3_6wnd2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player2 CharBdy2D" unique_id=1952216326]
@@ -68,6 +75,7 @@ texture = SubResource("MeshTexture_6wnd2")
 
 [node name="pongBall" type="CharacterBody2D" parent="." unique_id=2064249312]
 position = Vector2(60200008, 44900004)
+collision_mask = 63
 script = ExtResource("4_lqgkb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pongBall" unique_id=2084554889]
@@ -80,14 +88,53 @@ mesh = SubResource("SphereMesh_lqgkb")
 texture = SubResource("MeshTexture_or2tv")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=574601026]
+collision_layer = 8
+collision_mask = 15
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=420208834]
-polygon = PackedVector2Array(36200004, -300000.03, 114700010, -100000.01, 114900010, -13700001, -20700002, -13100001, -19400002, 77100010, 115500010, 77500010, 115100010, 64300004, 0, 64800004, -11700001, 64500004, -12500001, -8700001, -13000001, -8900001, -10900001, -300000.03)
+[node name="TopWall Poly2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=420208834]
+polygon = PackedVector2Array(36200004, -300000.03, 114700010, -100000.01, 114900010, -13700001, -11000001, -13600001, -10400001, 0)
 
-[node name="Label" type="Label" parent="." unique_id=185346736]
-offset_left = -3500000.2
-offset_top = -2200000.2
-offset_right = 4600001.0
-offset_bottom = 3600000.2
-theme_override_font_sizes/font_size = 1000
+[node name="BotWall Poly2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1723696162]
+position = Vector2(10500000, 78500000)
+polygon = PackedVector2Array(36200004, -300000.03, 114700010, -100000.01, 114900010, -13700001, -11000001, -13600001, -10400001, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=975811061]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1279062943]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/Control" unique_id=185346736]
+layout_mode = 0
+offset_left = 298.0
+offset_top = 32.0
+offset_right = 8100299.0
+offset_bottom = 5800032.5
+theme_override_font_sizes/font_size = 50
 text = "Score 0 : 0"
+
+[node name="Left Goal" type="StaticBody2D" parent="." unique_id=890134381]
+light_mask = 16
+visibility_layer = 16
+collision_layer = 16
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Goal" unique_id=810315354]
+light_mask = 16
+visibility_layer = 16
+position = Vector2(-3350005.5, 34300004)
+shape = SubResource("RectangleShape2D_or2tv")
+
+[node name="Right Goal" type="StaticBody2D" parent="." unique_id=1512524115]
+light_mask = 32
+visibility_layer = 32
+collision_layer = 32
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Goal" unique_id=1923701876]
+light_mask = 32
+visibility_layer = 32
+position = Vector2(118700000, 33000000)
+shape = SubResource("RectangleShape2D_or2tv")
